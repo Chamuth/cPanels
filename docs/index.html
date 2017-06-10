@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>cPanels | A Front-end Framework</title>
+	<link rel="stylesheet" href="dist/css/cpanels.css?2"/>
+	<link rel="stylesheet" type="text/css" href="bower_components/font_awesome/css/font-awesome.css">
+
+	<meta property="og:url" content="https://chamuth.github.io/cPanels/"/>
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="cPanels | A Front-end Framework" />
+	<meta property="og:description" content="cPanels is a JavaScript + CSS (Front-end) Framework (Inspired by Facebook) for web designers and developers to implement panels attached to the bottom (sidebars in future) that are closable, minimizable, and restorable. With cPanels framework there is no need to use JavaScript for it's basic functionality (implementing panels), although you can manually trigger to open the panels using JavaScript anyway." />
+	<meta property="og:image" content="http://www.shamasis.net/wp-content/uploads/2011/08/JavaScript-logo-top-825x510.png" />
+
+	<meta name="theme-color" content="#f8b506" />
+
+	<style>
+	*
+	{
+		--main-primary-color:#f8b506;
+	}
+
+	body
+	{
+		margin:0;
+		background:rgb(245,245,245);
+	}
+
+	::selection
+	{
+		background:var(--main-primary-color);
+		color:white;
+	}
+
+	.cc-gold
+	{
+		background-color:var(--main-primary-color);
+		color:white;
+	}
+
+	.nav
+	{
+		padding:0 25px 0 25px;
+		position:fixed;
+		top:0; left:0 ;
+		width:100vw;
+		z-index:1000;
+		background-color:var(--main-primary-color);
+		height:56px;
+	}
+
+	.nav-brand
+	{
+		padding-top:5px;
+		float:left;
+		margin-left:5px;
+		color:white !important;
+		font-size:15px;
+	}
+
+	.nav-brand a
+	{
+		color:white;
+	}
+
+	.container-fluid
+	{
+		padding-left:50px;
+		padding-right:50px;
+	}
+
+	.nav-links
+	{
+		float:right;
+		padding-top:5px;
+		margin-right:75px;
+	}
+
+	a
+	{
+		text-decoration:none;
+		color:var(--main-primary-color);
+		font-weight:bold;
+	}
+
+	.nav-links li
+	{
+		display:inline;
+		background-color:white;
+		color:var(--main-primary-color);
+		padding:10px 15px;
+		margin-left:10px;
+		font-weight:bold;
+
+		transition: background-color 500ms, color 500ms;
+	}
+
+	.nav-links li:hover
+	{
+		display:inline;
+		background-color:var(--main-primary-color);
+		color:white !important;
+		padding:10px 15px;
+		margin-left:10px;
+		font-weight:bold;
+
+
+		transition: background-color 500ms, color 500ms;
+	}
+
+	ul
+	{
+		margin-left:-10px;
+	}
+
+	.container
+	{
+		margin:25px 50px 50px 100px;
+		padding:25px 50px;
+		background:white;
+		border-radius:10px;
+
+		box-shadow:5px 5px 0px rgba(0,0,0,0.2);
+	}
+
+	.fixedAbout
+	{
+		position:fixed;
+		bottom:50px;
+		right:20px;
+		background:var(--main-primary-color);
+		color:white;
+		border-radius:5px;
+		padding:5px 10px;
+
+		overflow:hidden;
+
+		box-shadow: 0 0 10px rgba(0,0,0,0.5);
+
+		transition:opacity 500ms;
+	}
+
+	.rounded
+	{
+		background-color:var(--main-primary-color);
+		border-radius:50%;
+		color:white;
+		font-weight:bold;
+		padding:5px 10px;
+
+		margin-right:10px;
+	}
+
+
+	.fixedAbout:hover
+	{
+		opacity:0.8;
+
+		transition:opacity 500ms;
+	}
+
+	.fixedSmall
+	{
+		margin-top:0 !important;
+		font-size:10px;
+	}
+
+	.fixedLarge
+	{
+		font-size:13px;
+		font-weight:bold;
+	}
+
+	.textData
+	{
+		vertical-align:middle;
+		vertical-align:center;
+		padding-left:20px;
+		padding-bottom:10px;
+	}
+
+	.fixedImage
+	{
+		transform:scale(2.2);
+	}
+
+	.white-link
+	{
+		color:white;
+		text-decoration:none;
+	}
+
+	.white-link:hover
+	{
+		color:white;
+		opacity:0.7;
+		text-decoration:none;
+	}
+
+	.white-link:visited
+	{
+		color:white;
+	}
+
+	.heading
+	{
+		font-weight:bold;
+		color:var(--main-primary-color);
+
+		text-decoration:none;
+	}
+	
+	.heading-prev
+	{
+		font-weight:bold;
+		background-color:var(--main-primary-color);
+		color:white;
+		padding:4px 8px;
+		border-radius:5px;
+		margin-right:10px;
+		font-family:consolas;
+	}
+
+	dt
+	{
+		color:var(--main-primary-color);
+		font-weight:bold;
+	}
+
+	dd
+	{
+		color:black;
+	}
+
+	.round-btn
+	{
+		border-radius:50%;
+		position:fixed;
+		bottom:140px;
+		right:25px;
+		background-color:var(--main-primary-color);
+		color:white !important;
+		box-shadow: 0px 0px 15px rgba(0,0,0,0.5);
+		padding:18px 20px;
+
+		transition:background-color 500ms, color 1s;
+	}
+
+	.round-btn:hover
+	{
+		background-color:white;
+		color:var(--main-primary-color) !important;
+
+		transition:background-color 500ms, color 250ms;
+	}
+
+	@media screen and (min-width:1024px)
+	{
+		.container
+		{
+			margin:25px 150px;
+			padding:25px 50px;
+			background:white;
+			border-radius:10px;
+		}
+	}
+
+	@media screen and (min-width:1800px)
+	{
+		.container
+		{
+			margin:25px 250px;
+		}
+	}
+	</style>
+
+	<script async defer src="https://buttons.github.io/buttons.js"></script>
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+</head>
+<body>
+
+<a target="_blank" href="http://www.facebook.com/sharer.php?u=https%3A%2F%2Fchamuth.github.io/ccscrolljs/&p[title]=<TITLE>" class="round-btn"> <i class="fa fa-share"></i> </a> 
+
+
+<div class="fixedAbout">
+<a href="http://www.facebook.com/c.chamandana" class="white-link">
+	<table>
+		<tr>
+			<td>
+			 	<img class="fixedImage" width="32px" src="res/me.jpg"></img>
+		 	</td>
+			<td class="textData" style="padding-left:25px">
+				<span class="fixedSmall">ANOTHER PROJECT BY</span>
+				<br>
+				<span class="fixedLarge">CHAMUTH CHAMANDANA</span>
+				<br>
+			</td>
+		</tr>
+	</table>
+	</a>
+</div>
+
+<div class="cc-panel cc-left">
+	<div class="cc-panel-header cc-gold" data-container="introductionPanel">
+		<div class="cc-heading">INTRODUCTION</div>
+		<div class="cc-panel-close" data-close="panel">x</div>
+	</div>
+
+	<div class="cc-panel-content cc-panel-closed-start" id="introductionPanel"><br>
+		<img src="res/cpanels js.jpg" style="width:100%">
+		<p><strong>cPanels</strong> is a front-end framework for developing panels attached to the bottom of the HTML page faster and effectively.</p>
+	</div>
+</div>
+
+<div class="cc-panel cc-left">
+	<div class="cc-panel-header cc-gold" data-container="featuresPanel">
+		<div class="cc-heading">FEATURES</div>
+		<div class="cc-panel-close" data-close="panel">x</div>
+	</div>
+
+	<div class="cc-panel-content cc-panel-closed-start" id="featuresPanel">
+		<p>Here are some features of cPanels Framework:</p>
+
+		<ul type="square">
+			<li>Create panels only using HTML</li>
+			<li>Customizable Panel styles</li>
+			<li>Minimizable, Closable, and Animated Panels</li>
+			<li>Hiding panels on window resize</li>
+			<li>Trigger Panels using JavaScript if needed</li>
+		</ul>
+	</div>
+</div>
+
+<div class="cc-panel cc-left">
+	<div class="cc-panel-header cc-blue" data-container="livechatPanel">
+		<div class="cc-heading"><div style="background-color:lightgreen;width:7px;height:7px;border-radius:50%;display:inline-block;vertical-align:middle"></div> LIVE CHAT</div>
+		<div class="cc-panel-close" data-close="panel">x</div>
+	</div>
+
+	<div class="cc-panel-content cc-panel-closed-start" id="livechatPanel" style="text-align:center">
+		<span style="position:relative;transform:translateY(-50%);top:50%;color:gray"><strong>LOL!</strong> Live Chat Coming Soon!</span>
+	</div>
+</div>
+
+
+<div class="nav ">
+	<div class="nav-brand">
+		<a href="index.html"> <img src="res/cpanels-website-logo.jpg" height="45px"> <span style="padding-bottom:25px">| A Front-end Framework</span><br></a>
+	</div>
+
+	<ul class="nav-links">
+		<a href="#download"><li>DOWNLOAD</li></a>
+		<a href="#examples"><li>EXAMPLES</li></a>
+		<a href="#tutorial"><li>TUTORIAL</li></a>
+	</ul>
+</div>
+
+<div class="container" style="margin-top:100px;margin-bottom:100px">
+	<a href="http://www.ninponix.com"><strong class="heading-prev"><</strong> <strong class="heading"> BACK TO MAIN WEBSITE</strong></a>
+	
+	<div style="float:right;">
+		<a class="github-button" href="https://github.com/Chamuth/ccscrolljs/archive/master.zip" data-icon="octicon-cloud-download" data-size="large" aria-label="Download Chamuth/ccscrolljs on GitHub">Download</a>
+		<a class="github-button" href="https://github.com/Chamuth/ccscrolljs/fork" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork Chamuth/ccscrolljs on GitHub">Fork</a>
+	</div>
+
+	<br><br>
+	<a id="introduction"></a>
+	<h1 class="heading">INTRODUCTION TO CPANELS</h1>
+
+	<p style="text-align:justify;text-indent:50px">
+		<strong class="heading">cPanels</strong> is a JavaScript + CSS (Front-end) Framework (Inspired by <a href="http://www.facebook.com/">Facebook</a>) for web designers and developers to implement panels attached to the bottom (sidebars in future) that are closable, minimizable, and restorable. With cPanels framework there is <strong>no need to use JavaScript</strong> for it's basic functionality (implementing panels), although you can manually trigger to open the panels using JavaScript anyway.
+	</p>
+
+	<br>
+
+	<h1 class="heading">FEATURES OF CPANELS</h1>
+
+	<dl>
+		<dt>Create panels only using HTML</dt>
+		<dd>First of all attaching the CSS file and the JavaScript file to the HTML webpage is essential. To create a panel, the user only has to use HTML tags and HTML5 data attributes. See the <a href="#tutorial">Tutorial</a></dd>
+
+		<br>
+		<dt>Customizable Panel styles</dt>
+		<dd>cPanels let you customize the User Interface of the panels, and their headings. To create a new theme just add a new rule to the stylesheet as mentioned in the <a href="#tutorial">Tutorial</a></dd>
+
+		<br>
+		<dt>No need of jQuery, or Twitter Bootstrap</dt>
+		<dd>cPanels library does not need jQuery, it uses it's own ways to select elements and edit their CSS properties accordingly. It is not that much performance oriented as jQuery, but it gets the job done</dd>
+
+		<br>
+		<dt>Minimizable, Closable and Animated Panels</dt>
+		<dd>The defined panels can be minimized and restored to the same state by clicking on the heading of the panel and they can be closed using the close button in the top right corner of the panel</dd>
+
+		<br>
+		<dt>Hiding panels on window resize</dt>
+		<dd>cPanels automatically hides old panels when the size of all of the panels exceed the width of the window and gives enough space for the new ones. Try on this web page</dd>
+
+		<br>
+		<dt>Trigger Panels using JavaScript</dt>
+		<dd>Panels can be manually opened / triggered by calling cPanel functions by addressing the specific container of the panel to the functions. See the <a href="#tutorial">Tutorial</a></dd>
+	</dl>
+
+	<br>
+
+	<h1 class="heading">DOWNLOAD CPANELS</h1>
+
+	<br>
+	<span class="heading"><span class="rounded">1</span> Via CDN (Content Delivery Network)</span>
+
+	<br>
+	<br>
+	<p>At the &lt;head&gt; tag: </p>
+	<pre><code class="html">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Chamuth/cpanels@1.0/dist/js/cpanels.js"/&gt;</code></pre>
+	<p>At the &lt;body&gt; or &lt;head&gt; tag: </p>
+	<pre><code class="html">&lt;script src="https://cdn.jsdelivr.net/gh/Chamuth/cpanels@1.0/dist/js/cpanels.js"&gt;&lt;/script&gt;</code></pre>
+
+	<br>
+	<span class="heading"><span class="rounded">2</span> Using Bower</span>
+	<br><br>
+
+	<pre><code class="Ini">bower install cpanels</code></pre>
+
+	<br><br>
+
+
+	<h1 class="heading">GETTING STARTED WITH CPANELS</h1>
+	<br>
+
+	<span class="heading"><span class="rounded">1</span> DOWNLOADING AND INCLUDING CPANELS LIBRARY</span>
+	<p>Follow <a href="#download">download</a> section to download and install/include cPanels library with your HTML file.</p>
+
+	<br>
+
+	<span class="heading"><span class="rounded">2</span> CREATING A NEW PANEL</span>
+	<p>By Adding the HTML elements stated below, a user can create a basic panel. The container data attribute (<code class="html">data-container</code>) in the header div is referring to the actual container that contains the content of the panel (<code class="html">cc-panel-content</code>.</p>
+
+
+	<pre><code class="html">&lt;div class="cc-panel cc-left"&gt;
+&lt;div class="cc-panel-header cc-gold" data-container="introductionPanel"&gt;
+&lt;div class="cc-heading">INTRODUCTION&lt;/div&gt;
+&lt;div class="cc-panel-close" data-close="panel">x&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cc-panel-content cc-panel-closed-start" id="introductionPanel"&gt;
+&lt;p>&lt;strong>cPanels&lt;/strong&gt; is a front-end framework for developing panels attached to the bottom of the HTML page faster and effectively.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+	<br>
+
+	<h1 class="heading">VARIATIONS OF CPANELS</h1>
+	<br>
+
+	<span class="heading"><span class="rounded">1</span> ALIGNMENT VARIATIONS</span>
+
+	<br>
+
+	<p>Align a panel to the left: </p>
+	<pre><code class="html">&lt;div class="cc-panel cc-left"&gt;
+&lt;div class="cc-panel-header cc-gold" data-container="leftPanel"&gt;
+&lt;div class="cc-heading">INTRODUCTION&lt;/div&gt;
+&lt;div class="cc-panel-close" data-close="panel">x&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cc-panel-content cc-panel-closed-start" id="leftPanel"&gt;
+&lt;p>&lt;strong>cPanels&lt;/strong&gt; is a front-end framework for developing panels attached to the bottom of the HTML page faster and effectively.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+	<p>Align a panel to the right: </p>
+	<pre><code class="html">&lt;div class="cc-panel cc-right"&gt;
+&lt;div class="cc-panel-header cc-gold" data-container="rightPanel"&gt;
+&lt;div class="cc-heading">INTRODUCTION&lt;/div&gt;
+&lt;div class="cc-panel-close" data-close="panel">x&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cc-panel-content cc-panel-closed-start" id="rightPanel"&gt;
+&lt;p>&lt;strong>cPanels&lt;/strong&gt; is a front-end framework for developing panels attached to the bottom of the HTML page faster and effectively.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+	<br>
+	<span class="heading"><span class="rounded">1</span> COLOR VARIATIONS</span>
+
+	<br>
+
+	<p><span style="color:red;font-weight:bold">Red</span> colored panel element: </p>
+	<pre><code class="html">&lt;div class="cc-panel cc-left"&gt;
+&lt;div class="cc-panel-header cc-red" data-container="redPanel"&gt;
+&lt;div class="cc-heading">INTRODUCTION&lt;/div&gt;
+&lt;div class="cc-panel-close" data-close="panel">x&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cc-panel-content cc-panel-closed-start" id="redPanel"&gt;
+&lt;p>&lt;strong>cPanels&lt;/strong&gt; is a front-end framework for developing panels attached to the bottom of the HTML page faster and effectively.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+	<p><span style="color:blue;font-weight:bold">Blue</span> colored panel element: </p>
+	<pre><code class="html">&lt;div class="cc-panel cc-left"&gt;
+&lt;div class="cc-panel-header cc-blue" data-container="bluePanel"&gt;
+&lt;div class="cc-heading">INTRODUCTION&lt;/div&gt;
+&lt;div class="cc-panel-close" data-close="panel">x&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cc-panel-content cc-panel-closed-start" id="bluePanel"&gt;
+&lt;p>&lt;strong>cPanels&lt;/strong&gt; is a front-end framework for developing panels attached to the bottom of the HTML page faster and effectively.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+	<p><span style="color:gold;font-weight:bold">Gold</span> colored panel element: </p>
+	<pre><code class="html">&lt;div class="cc-panel cc-left"&gt;
+&lt;div class="cc-panel-header cc-gold" data-container="goldPanel"&gt;
+&lt;div class="cc-heading">INTRODUCTION&lt;/div&gt;
+&lt;div class="cc-panel-close" data-close="panel">x&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cc-panel-content cc-panel-closed-start" id="bluePagoldPanelnel"&gt;
+&lt;p>&lt;strong>cPanels&lt;/strong&gt; is a front-end framework for developing panels attached to the bottom of the HTML page faster and effectively.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+
+	<br>
+
+	<h1 class="heading">TRIGGERING PANELS MANUALLY</h1>
+	
+	<span style="margin-right:10px">DEMO : </span>
+	<a class="heading" style="cursor:pointer;margin-right:15px" onclick="panel('introductionPanel', true);">Click here to open a panel manually</a>
+	<a class="heading" style="cursor:pointer;margin-right:15px" onclick="panel('introductionPanel', false);">Click here to close a panel manually</a>
+	<a class="heading" style="cursor:pointer;margin-right:15px" onclick="panel('introductionPanel');">Click here to toggle a panel manually</a>
+
+	<p>To <span class="heading">open panels</span> manually use this JavaScript function:</p>
+	<pre><code class="javascript">panels(&quot;PANEL_ID&quot;, true)</code></pre>
+
+	<p>To <span class="heading">close panels</span> manually use this JavaScript function:</p>
+	<pre><code class="javascript">panels(&quot;PANEL_ID&quot;, false)</code></pre>
+
+	<p>To <span class="heading">toggle between open and close panels</span> manually use this JavaScript function by omitting the optional Open State parameter:</p>
+	<pre><code class="javascript">panels(&quot;PANEL_ID&quot;)</code></pre>
+
+	<br>
+	<a id="donate"></a>
+	<h1 class="heading">DONATE DEVELOPER</h1>
+
+	<table>
+		<tr>
+			<td>
+				<img style="border-radius:10px" src="res/me.jpg" width="160px"/>
+			</td>
+			<td style="padding-left:15px"> 
+				<p style="text-indent:50px">
+					<a style="font-weight:bold" href="http://www.facebook.com/c.chamandana">Chamuth Chamandana Thilakarathne</a> is a 15 year old programmer (Enterprenuer Web Designer / Developer and Software Engineer). He taught himself programming when he was 10 years old. He has worked with many projects Like Project Scholar (An e-Learning CMS), Project DualServer (A Web Design Pattern / Architecture), Project NEL (Ninponix Encryption Language), Project Ninponix Office (An Office Packaged Application), Project NVL (Ninponix Visual Language which is used in developing presentations and visual documents; CSV-type), Project Tusker (An Education-based Programming Language for school students; I believe Sri Lanka's first programming language), CC File Hidden (A file hiding software), Project Navbar (A.K.A ccnavbar.css), some small-time projects like Sound Recorders, Audio/Video Converters, Open Source Contributions and <strong class="heading">this 5-hour project for CSS + JavaScript Panels Implementation</strong>. 
+				</p>
+
+				Mobile: <a style="font-weight:bold;display:inline-block;margin-right:15px" href="tel:+94756281355">+94 75 6281355</a>
+				PayPal: <a style="font-weight:bold;display:inline-block;margin-right:15px" href="mailto:ninponix@gmail.com">ninponix@gmail.com</a>
+				Stripe: <a style="font-weight:bold;display:inline-block;margin-right:15px" href="mailto:ninponix@gmail.com">ninponix@gmail.com</a>
+			</td>
+		</tr>
+	</table>
+
+</div>
+
+<script type="text/javascript" src="dist/js/cpanels.js?2"></script>
+<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).on('click', 'a', function (event){
+		if ($.attr(this, 'href').startsWith("http://") == false)
+			event.preventDefault();
+
+		$("html, body").animate({
+			scrollTop: $( $.attr(this, 'href')).offset().top - 50
+		}, 500);
+	});
+</script>
+
+</body>
+</html>
