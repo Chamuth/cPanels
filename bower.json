@@ -1,0 +1,22 @@
+{
+  "name": "cPanels",
+  "authors": [
+    "Chamuth Chamandana <c.chamandana@gmail.com>"
+  ],
+  "description": "A front-end framework for web designers and developer to create panels that are attached to the bottem like windows",
+  "main": "dist/js/cpanels.js",
+  "keywords": [
+    "panels",
+    "framework",
+    "windows"
+  ],
+  "license": "MIT",
+  "homepage": "Chamuth.github.io/cpanels/",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
