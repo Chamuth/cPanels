@@ -1,0 +1,198 @@
+.cc-panel
+{
+	position:fixed;
+	bottom:0px;
+	width:250px;
+
+	box-shadow:0 0 10px rgba(0,0,0,0.2);
+
+	animation: Fade 500ms;
+
+
+	transition:bottom 500ms, left 500ms, right 500ms;
+}
+
+@keyframes Fade
+{
+	0% { opacity: 0; transform:translateY(100%); }
+	100% { opacity: 1; transform:translateY(0%); }
+}
+
+.cc-panel-header
+{
+	padding:5px 10px;
+	border-radius:2px 2px 0 0;
+	cursor:pointer;
+	text-shadow:0 0 5px rgba(0,0,0,0.3);
+}
+
+.cc-blue
+{
+	background-color:rgb(0,150,255);
+	color:white;
+
+	transition:background-color 500ms, color 500ms;
+}
+
+.cc-blue:hover
+{
+	background-color:rgb(0,120,225);
+	color:white;
+
+	transition:background-color 500ms, color 500ms;
+}
+
+.cc-white
+{
+	background-color:rgb(245,245,245);
+	color:gold;
+
+	transition:background-color 500ms, color 500ms;
+}
+
+.cc-white:hover
+{
+	background-color:rgb(235,235,235);
+	color:gold;
+
+	transition:background-color 500ms, color 500ms;
+}
+
+.cc-gold
+{
+	background-color:gold;
+	color:white;
+
+	transition:background-color 500ms, color 500ms;
+}
+
+.cc-gold:hover
+{
+	background-color:gold;
+	color:white;
+
+	transition:background-color 500ms, color 500ms;
+}
+
+.cc-purple
+{
+	background-color:rgb(150,0,255);
+	color:white;
+
+	transition:background-color 500ms, color 500ms;
+}
+
+.cc-purple:hover
+{
+	background-color:rgb(120,0,225);
+	color:white;
+
+	transition:background-color 500ms, color 500ms;
+}
+
+.cc-red
+{
+	background-color:rgb(200,0,0);
+	color:white;
+
+	transition:background-color 500ms, color 500ms;
+}
+
+.cc-red:hover
+{
+	background-color:rgb(180,0,0);
+	color:white;
+
+	transition:background-color 500ms, color 500ms;
+}
+
+.cc-green
+{
+	background-color:rgb(0,200,0);
+	color:white;
+
+	transition:background-color 500ms, color 500ms;
+}
+
+.cc-green:hover
+{
+	background-color:rgb(0,180,0);
+	color:white;
+
+	transition:background-color 500ms, color 500ms;
+}
+
+.cc-heading
+{
+	display:inline;
+	font-weight:bold;
+}
+
+.cc-panel-close
+{
+	float:right;
+	font-family:consolas;
+	cursor:pointer;
+	font-weight:bold;
+
+	transition:opacity 500ms;
+}
+
+.cc-panel-close:hover
+{
+	opacity:0.6;
+	transition:opacity 500ms;
+}
+
+.cc-left
+{
+	left:10px;
+
+	transition:left 500ms;
+}
+
+.cc-right
+{
+	right:10px;
+
+	transition:right 500ms;
+}
+
+.cc-panel-content
+{
+	background:white;
+	border:1px solid transparent;
+	padding:0px 15px;
+	overflow-y:auto;
+}
+
+.cc-panel-open
+{
+	height: 300px;
+	animation : OpenAnimation 500ms;
+	-webkit-transition: height 500ms;
+}
+
+.cc-panel-closed
+{
+	height:0;
+	animation : CloseAnimation 500ms;
+	-webkit-transition: height 500ms;
+}
+
+.cc-panel-closed-start
+{
+	height:0;
+}
+
+@keyframes OpenAnimation
+{
+	0% { height: 0; }
+	100% { height: 300px; }
+}
+
+@keyframes CloseAnimation
+{
+	0% { height: 300px; }
+	100% { height: 0; }
+}
